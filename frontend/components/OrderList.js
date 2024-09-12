@@ -1,17 +1,28 @@
 import React from 'react'
+import { useGetPizzaQuery } from '../state/pizzaApi'
+import {useSelector, } from 'react-redux'
+import { updateFilter } from '../state/pizzaSlice'
+
 
 export default function OrderList() {
-  const orders = []
+
+  const orders = useGetPizzaQuery().data||[]
+  const currentFilter=useSelector((st)=>st.pizza.size)
+  
   return (
     <div id="orderList">
       <h2>Pizza Orders</h2>
       <ol>
-        {
-          orders.map(() => {
+        {orders&&
+        orders.filter((ord)=>currentFilter==='All'||currentFilter===ord.size)
+          .map((ord) => {
+            const{id,customer,size,toppings}=ord
             return (
-              <li key={1}>
+              <li key={id}>
                 <div>
-                  order details here
+                {customer} ordered a size {size} with{" "}
+                    {toppings?.length || "no"} topping
+                    {toppings && toppings.length === 1 ? "" : "s"}
                 </div>
               </li>
             )
@@ -22,11 +33,16 @@ export default function OrderList() {
         Filter by size:
         {
           ['All', 'S', 'M', 'L'].map(size => {
+            const onClick =()=>(updateFilter(size))
             const className = `button-filter${size === 'All' ? ' active' : ''}`
             return <button
               data-testid={`filterBtn${size}`}
               className={className}
-              key={size}>{size}</button>
+              key={size}
+              onClick={onClick}
+              >
+                {size}
+              </button>
           })
         }
       </div>
