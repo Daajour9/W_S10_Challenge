@@ -23,8 +23,8 @@ const RESET_FORM = 'RESET_FORM'
 const reducer = (state, action) => {
   switch (action.type) {
     case CHANGE_INPUT: {
-      const { name, value } = action.payload
-      return { ...state, [name]: value }
+      const { name, newValue } = action.payload
+      return { ...state, [name]: newValue }
     }
     case RESET_FORM:
       return initialFormState

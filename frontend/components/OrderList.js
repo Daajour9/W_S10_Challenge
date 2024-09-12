@@ -2,8 +2,6 @@ import React from 'react'
 import { useGetPizzaQuery } from '../state/pizzaApi'
 import {useSelector, } from 'react-redux'
 import { updateFilter } from '../state/pizzaSlice'
-
-
 export default function OrderList() {
 
   const orders = useGetPizzaQuery().data||[]
@@ -33,7 +31,7 @@ export default function OrderList() {
         Filter by size:
         {
           ['All', 'S', 'M', 'L'].map(size => {
-            const onClick =()=>(updateFilter(size))
+            const onClick =()=>dispatch(updateFilter(size))
             const className = `button-filter${size === 'All' ? ' active' : ''}`
             return <button
               data-testid={`filterBtn${size}`}
