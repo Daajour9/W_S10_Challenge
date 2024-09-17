@@ -1,4 +1,4 @@
-import React, { useState, useReducer} from 'react'
+import React, { useReducer} from 'react'
 import { useCreatePizzaMutation } from '../state/pizzaApi'
 
 
@@ -61,13 +61,6 @@ const resetForm = () => {
     if (response.ok) {
         const createdOrder = await response.json();
         (createPizza(createdOrder)); // Add order to Redux store
-        // Clear form fields
-        // setName('');
-        // setSize('');
-        // setToppings([]);
-
-          
-        // Reset the form fields
         resetForm(); // Call resetForm to clear the form
     } else {
         console.error('Failed to create order');
