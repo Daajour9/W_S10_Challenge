@@ -13,7 +13,7 @@ export const resetStore = () => configureStore({
   },
   middleware: getDefault => getDefault().concat(
   
-      pizzaApi.middleware,
+      pizzaApi.middleware
     ),
   
 })

@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const pizzaSlice= createSlice({
-    name:'pizza',
-    initialState:{
-        size:'All'
+const pizzaSlice = createSlice({
+    name: 'pizza',
+    initialState: {
+        size: 'All'
     },
-    reducers:{
-        updateFilter(state, action){
-            state.size=action.payload
+    reducers: {
+        updateFilter(state, action) {
+            state.size = action.payload
         }
     }
 })
 
-export const{
+export const {
     updateFilter
 } = pizzaSlice.actions
 
